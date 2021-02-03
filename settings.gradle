@@ -5,4 +5,6 @@ include 'kafka-producer-api'
 include 'stream-kafka'
 include 'stream-kafka-streams'
 include 'kafka-consumer-api'
+include 'config-server'
+include 'config-client'
 

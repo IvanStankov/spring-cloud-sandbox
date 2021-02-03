@@ -1,0 +1,5 @@
+###
+GET http://config-server-user:config-server-password@localhost:8888/config-client/default
+
+###
+GET http://config-server-user:config-server-password@localhost:8888/config-client/theProfile
