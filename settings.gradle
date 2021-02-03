@@ -1,0 +1,8 @@
+rootProject.name = 'spring-cloud-sandbox'
+
+include 'common'
+include 'kafka-producer-api'
+include 'stream-kafka'
+include 'stream-kafka-streams'
+include 'kafka-consumer-api'
+

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: kafka-producer-api
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 1
+      properties:
+        spring.json.add.type.headers: false
+
+logging:
+  pattern:
+    console: "%d{MM-dd HH:mm:ss} %5p - [%15.15t] %-25.25logger{25}: %m%n%wEx"

@@ -1,0 +1,8 @@
+### Sync producer
+POST http://localhost:8080/kafka-producer/sync
+
+### Async producer
+POST http://localhost:8080/kafka-producer/async
+
+### Failing consumer
+POST http://localhost:8080/kafka-producer/failing-consumer

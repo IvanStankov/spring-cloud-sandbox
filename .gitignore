@@ -1,0 +1,7 @@
+.idea
+out/
+.idea_modules/
+
+.gradle
+**/build/
+

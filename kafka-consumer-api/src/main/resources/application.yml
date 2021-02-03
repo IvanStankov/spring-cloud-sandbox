@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: kafka-consumer-api
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: kafka-consumer
+      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+
+logging:
+  pattern:
+    console: "%d{MM-dd HH:mm:ss} %5p - [%15.15t] %-25.25logger{25}: %m%n%wEx"

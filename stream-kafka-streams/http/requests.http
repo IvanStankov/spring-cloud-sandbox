@@ -1,0 +1,8 @@
+### Get all topologies
+GET http://localhost:8082/actuator/kafkastreamstopology
+
+### Get temperature-counter topology
+GET http://localhost:8082/actuator/kafkastreamstopology/temperature-avg
+
+### Get temperature statistics
+GET http://localhost:8082/temperature/statistics

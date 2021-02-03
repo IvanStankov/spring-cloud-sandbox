@@ -1,0 +1,60 @@
+server.port: 8082
+
+spring:
+  application.name: stream-kafka-streams
+
+  cloud:
+    function.definition: warmColdSplitter;temperatureCounter;temperatureAdder;temperatureAvg
+    stream:
+      kafka:
+        streams:
+          binder:
+            brokers: localhost:9092
+            configuration:
+              commit.interval.ms: 2000
+              default:
+                key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+            functions:
+              firstTry.applicationId: first-try
+              temperatureSplitterCounter.applicationId: temperature-splitter-counter
+              warmColdSplitter.applicationId: warm-cold-splitter
+              temperatureCounter.applicationId: temperature-counter
+              temperatureAdder.applicationId: temperature-adder
+              temperatureAvg.applicationId: temperature-avg
+
+      bindings:
+        firstTry-in-0:
+          destination: stream-strings
+        temperatureSplitterCounter-in-0:
+          destination: measurements
+        # START - calculating average temperature for WARM and COLD
+        warmColdSplitter-in-0:
+          destination: measurements
+        warmColdSplitter-out-0:
+          destination: measurements-warm-cold
+        temperatureCounter-in-0:
+          destination: measurements-warm-cold
+        temperatureCounter-out-0:
+          destination: temperature-counted
+        temperatureAdder-in-0:
+          destination: measurements-warm-cold
+        temperatureAdder-out-0:
+          destination: temperature-added
+        temperatureAvg-in-0:
+          destination: temperature-added
+        temperatureAvg-in-1:
+          destination: temperature-counted
+        temperatureAvg-out-0:
+          destination: temperature-avg
+        # END - calculating average temperature for WARM and COLD
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: kafkastreamstopology
+
+logging:
+  pattern:
+    console: "%d{MM-dd HH:mm:ss} %5p - [%15.15t] %-25.25logger{25}: %m%n%wEx"

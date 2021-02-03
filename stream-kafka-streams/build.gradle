@@ -1,0 +1,10 @@
+dependencies {
+    implementation project(':common'),
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'org.springframework.cloud:spring-cloud-stream',
+            'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams',
+            'org.apache.kafka:kafka-streams'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

@@ -1,0 +1,7 @@
+### Stream bridge
+POST http://localhost:8080/kafka-stream-producer/stream-bridge
+
+Greetings from Web!
+
+### Failing consumer
+POST http://localhost:8080/kafka-stream-producer/failing-consumer
