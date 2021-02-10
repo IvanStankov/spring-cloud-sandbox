@@ -1,0 +1,26 @@
+### Get all accounts
+GET http://localhost:8020/accounts
+
+### Get the account
+GET http://localhost:8020/accounts/14
+
+### Create an account
+POST http://localhost:8020/accounts
+Content-Type: application/json
+
+{
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "dob": "1984-02-29"
+}
+
+### Update the account
+PUT http://localhost:8020/accounts/132
+Content-Type: application/json
+
+{
+    "id": 132,
+    "firstName": "Marty",
+    "lastName": "McFly",
+    "dob": "1968-06-12"
+}

@@ -1,0 +1,12 @@
+server.port: 8090
+spring:
+  application:
+    name: sf
+  sleuth:
+    sampler.probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411
+
+service:
+  one.url: http://localhost:8091/service-one
+  two.url: http://localhost:8092/service-two

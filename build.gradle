@@ -51,7 +51,7 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     }
 

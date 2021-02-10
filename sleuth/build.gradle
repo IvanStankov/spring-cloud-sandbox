@@ -1,0 +1,15 @@
+subprojects {
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web',
+                'org.springframework.cloud:spring-cloud-starter-sleuth',
+                'org.springframework.cloud:spring-cloud-sleuth-zipkin'
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}

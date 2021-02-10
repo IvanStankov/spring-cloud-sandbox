@@ -1,0 +1,99 @@
+name: get all accounts
+request:
+  method: GET
+  url: /accounts
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    - id: 1
+      firstName: John
+      lastName: Doe
+      dob: '1983-08-21'
+    - id: 2
+      firstName: Jane
+      lastName: Doe
+      dob: '1984-02-29'
+  matchers:
+    body:
+      - path: $[0].id
+        type: by_type
+      - path: $[1].id
+        type: by_type
+---
+name: get certain account
+request:
+  method: GET
+  url: /accounts/14
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    id: '{{{ request.path.[1] }}}'
+    firstName: John
+    lastName: Doe
+    dob: '1983-08-21'
+---
+name: create an account
+request:
+  method: POST
+  url: /accounts
+  headers:
+    Content-Type: application/json
+  body:
+    firstName: Jane
+    lastName: Foe-Doe
+    dob: "1984-02-29"
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    id: 1
+    firstName: "{{{ jsonpath this '$.firstName' }}}"
+    lastName: "{{{ jsonpath this '$.lastName' }}}"
+    dob: "{{{ jsonpath this '$.dob' }}}"
+  matchers:
+    body:
+      - path: $.id
+        type: by_regex
+        value: "[1-9]\\d*"
+---
+name: update an account
+request:
+  method: PUT
+  url: /accounts/123
+  headers:
+    Content-Type: application/json
+  body:
+    id: 1
+    firstName: firstName
+    lastName: lastName
+    dob: "2000-01-01"
+  matchers:
+    url:
+      regex: /accounts/\d+
+    body:
+      - path: $.id
+        type: by_regex
+        value: "[1-9]\\d*"
+      - path: $.firstName
+        type: by_regex
+        value: \w+
+      - path: $.lastName
+        type: by_regex
+        value: \w+
+      - path: $.dob
+        type: by_regex
+        predefined: iso_date
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    id: "{{{ jsonpath this '$.id' }}}"
+    firstName: "{{{ jsonpath this '$.firstName' }}}"
+    lastName: "{{{ jsonpath this '$.lastName' }}}"
+    dob: "{{{ jsonpath this '$.dob' }}}"
